@@ -22,7 +22,7 @@ class Feed extends Component {
   };
 
   componentDidMount() {
-    fetch('http://localhost:8080/auth/status', {
+    fetch('https://node-messaging-api.herokuapp.com/auth/status', {
       headers: {
         Authorization: 'Bearer ' + this.props.token,
       },
@@ -54,7 +54,7 @@ class Feed extends Component {
       page--;
       this.setState({ postPage: page });
     }
-    fetch('http://localhost:8080/feed/posts?page=' + page, {
+    fetch('https://node-messaging-api.herokuapp.com/feed/posts?page=' + page, {
       headers: {
         Authorization: 'Bearer ' + this.props.token,
       },
@@ -83,7 +83,7 @@ class Feed extends Component {
 
   statusUpdateHandler = (event) => {
     event.preventDefault();
-    fetch('http://localhost:8080/auth/status', {
+    fetch('https://node-messaging-api.herokuapp.com/auth/status', {
       method: 'PATCH',
       headers: {
         Authorization: 'Bearer ' + this.props.token,
@@ -133,10 +133,10 @@ class Feed extends Component {
     formData.append('content', postData.content);
     formData.append('image', postData.image);
 
-    let url = 'http://localhost:8080/feed/post';
+    let url = 'https://node-messaging-api.herokuapp.com/feed/post';
     let method = 'POST';
     if (this.state.editPost) {
-      url = 'http://localhost:8080/feed/post/' + this.state.editPost._id;
+      url = 'https://node-messaging-api.herokuapp.com/feed/post/' + this.state.editPost._id;
       method = 'PUT';
     }
 
@@ -196,7 +196,7 @@ class Feed extends Component {
 
   deletePostHandler = (postId) => {
     this.setState({ postsLoading: true });
-    fetch('http://localhost:8080/feed/post/' + postId, {
+    fetch('https://node-messaging-api.herokuapp.com/feed/post/' + postId, {
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + this.props.token,
